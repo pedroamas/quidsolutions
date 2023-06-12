@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Example View</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">QUID</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<form th:action="@{'/newtask/'+ ${userId}}" th:object="${taskDto}" method="post">
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-lg-4 col-md-6 col-sm-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Nueva tarea</h5>
+                        <form action="/login" method="POST">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Título</label>
+                                <input type="text" id="title" th:field="*{title}" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Descripción</label>
+                                <input type="text" id="description" th:field="*{description}" class="form-control" required>
+                            </div>
+                            <div class="text-center mt-3">
+                                <input class="btn btn-primary" type="submit" value="Crear tarea">
+                            </div>
+                            <div class="text-center mt-3">
+                                <a class="btn btn-danger" th:href="'/tasks/' + ${userId}" role="button">Volver</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>
